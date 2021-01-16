@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const INITIAL_STATE = {
   title: '',
-  desc: ''
+  body: ''
 };
 
 const AddPost = props => {
@@ -89,11 +89,11 @@ const AddPost = props => {
 
             <Grid item xs={12}>
               <TextField
-                name="desc"
-                value={formValues.desc}
+                name="body"
+                value={formValues.body}
                 onChange={handleInput}
                 required
-                label="Desc"
+                label="Post"
                 fullWidth
                 variant="outlined"
                 multiline
