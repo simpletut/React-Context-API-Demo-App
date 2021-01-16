@@ -33,7 +33,7 @@ const INITIAL_STATE = {
   desc: ''
 };
 
-const AddTodo = props => {
+const AddPost = props => {
   const [formValues, setFormValues] = useState({ ...INITIAL_STATE });
   const classes = useStyles();
 
@@ -62,7 +62,7 @@ const AddTodo = props => {
         </Avatar>
 
         <Typography component="h1" variant="h5">
-          Add New Todo
+          Add New Post
         </Typography>
 
         <form className={classes.form} onSubmit={handleSubmit}>
@@ -113,4 +113,4 @@ const AddTodo = props => {
   );
 };
 
-export default AddTodo;
+export default AddPost;

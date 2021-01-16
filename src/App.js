@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import MainLayout from './Layouts/Main';
-import Todos from './Pages/Todos';
-import AddTodo from './Pages/AddTodo';
+import Posts from './Pages/Posts';
+import AddPost from './Pages/AddPost';
 
 const App = props => {
 
@@ -11,13 +11,13 @@ const App = props => {
       <Switch>
         <Route exact path="/" render={() => (
           <MainLayout>
-            <Todos />
+            <Posts />
           </MainLayout>
         )}
         />
         <Route exact path="/add" render={() => (
           <MainLayout>
-            <AddTodo />
+            <AddPost />
           </MainLayout>
         )}
         />

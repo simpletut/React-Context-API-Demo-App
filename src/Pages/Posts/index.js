@@ -25,7 +25,7 @@ const rows = [
   { id: 1, title: 'Snow', desc: 'Jon' },
 ];
 
-const Todos = ({}) => {
+const Posts = ({}) => {
   const classes = useStyles();
   const [select, setSelection] = useState([]);
 
@@ -57,4 +57,4 @@ const Todos = ({}) => {
   );
 }
 
-export default Todos;
+export default Posts;

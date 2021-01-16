@@ -15,7 +15,7 @@ const SideMenu = props => {
         <ListItemIcon>
           <ViewListIcon />
         </ListItemIcon>
-        <ListItemText primary="Todos" />
+        <ListItemText primary="Posts" />
       </ListItem>
 
       <ListItem button component={Link} to="/add">
