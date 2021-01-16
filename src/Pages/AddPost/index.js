@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
@@ -7,6 +8,8 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { PostsContext } from './../../Providers/Posts/posts.provider';
+import { v4 as uuidv4 } from 'uuid';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -30,10 +33,12 @@ const useStyles = makeStyles((theme) => ({
 
 const INITIAL_STATE = {
   title: '',
-  desc: ''
+  body: ''
 };
 
 const AddPost = props => {
+  const history = useHistory()
+  const { addPost } = useContext(PostsContext);
   const [formValues, setFormValues] = useState({ ...INITIAL_STATE });
   const classes = useStyles();
 
@@ -50,7 +55,14 @@ const AddPost = props => {
   const handleSubmit = evt => {
     evt.preventDefault();
 
-    console.log(formValues);
+    const config = {
+      ...formValues,
+      id: uuidv4()
+    };
+
+    addPost(config);
+
+    history.push('/');
   };
 
   return (
@@ -83,11 +95,11 @@ const AddPost = props => {
 
             <Grid item xs={12}>
               <TextField
-                name="desc"
-                value={formValues.desc}
+                name="body"
+                value={formValues.body}
                 onChange={handleInput}
                 required
-                label="Desc"
+                label="body"
                 fullWidth
                 variant="outlined"
                 multiline

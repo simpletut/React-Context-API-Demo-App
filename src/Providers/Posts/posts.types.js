@@ -1,0 +1,5 @@
+export default {
+  ADD_POST: 'ADD_POST',
+  REMOVE_POST: 'REMOVE_POST',
+  SET_POSTS_COUNT: 'SET_POSTS_COUNT',
+};

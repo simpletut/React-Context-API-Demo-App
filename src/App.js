@@ -4,21 +4,28 @@ import MainLayout from './Layouts/Main';
 import Posts from './Pages/Posts';
 import AddPost from './Pages/AddPost';
 
+// Context
+import PostsProvider from './Providers/Posts/posts.provider';
+
 const App = props => {
 
   return (
     <div>
       <Switch>
         <Route exact path="/" render={() => (
-          <MainLayout>
-            <Posts />
-          </MainLayout>
+          <PostsProvider>
+            <MainLayout>
+              <Posts />
+            </MainLayout>
+          </PostsProvider>
         )}
         />
         <Route exact path="/add" render={() => (
-          <MainLayout>
-            <AddPost />
-          </MainLayout>
+          <PostsProvider>
+            <MainLayout>
+              <AddPost />
+            </MainLayout>
+          </PostsProvider>
         )}
         />
       </Switch>

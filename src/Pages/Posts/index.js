@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { makeStyles, withTheme } from '@material-ui/core/styles';
+import React, { useState, useContext } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { Button, Grid, Container } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
+import { PostsContext } from './../../Providers/Posts/posts.provider';
 
 const useStyles = makeStyles((theme) => ({
   topMargin: {
@@ -16,18 +17,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const columns = [
-  { field: 'id', headerName: 'ID' },
-  { field: 'title', headerName: 'Title' },
-  { field: 'desc', headerName: 'Desc' },
+  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'title', headerName: 'Title', width: 300 },
+  { field: 'body', headerName: 'Post Body', width: 500 },
 ];
 
-const rows = [
-  { id: 1, title: 'Snow', desc: 'Jon' },
-];
-
-const Posts = ({}) => {
+const Posts = ({ }) => {
   const classes = useStyles();
+  const { posts, removePost } = useContext(PostsContext);
   const [select, setSelection] = useState([]);
+
+  const deletePost = () => {
+    if (!Array.isArray(select) && select.length < 1) return;
+    removePost(select);
+  };
 
   return (
     <Container>
@@ -37,19 +40,22 @@ const Posts = ({}) => {
           <div style={{ height: 400, width: '100%' }}>
             <DataGrid
               className={classes.dataTable}
-              rows={rows}
               columns={columns}
+              rows={posts}
               pageSize={5}
               checkboxSelection
-              onSelectionChange={(newSelection) => {
-                setSelection(newSelection.rows);
+              onSelectionChange={({ rowIds }) => {
+                setSelection(rowIds);
               }} />
           </div>
 
         </Grid>
 
         <Grid item className={classes.btnWrap}>
-          <Button color="secondary">Delete</Button>
+          <Button
+            color="secondary"
+            onClick={deletePost}
+          >Delete</Button>
         </Grid>
 
       </Grid>
