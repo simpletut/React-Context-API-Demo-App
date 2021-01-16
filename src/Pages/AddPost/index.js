@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { v4 as uuidv4 } from 'uuid';
+import { PostsContext } from './../../Providers/Posts/posts.provider';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,6 +37,8 @@ const INITIAL_STATE = {
 };
 
 const AddPost = props => {
+  const history = useHistory();
+  const { createPost } = useContext(PostsContext);
   const [formValues, setFormValues] = useState({ ...INITIAL_STATE });
   const classes = useStyles();
 
@@ -56,7 +60,8 @@ const AddPost = props => {
       id: uuidv4()
     };
 
-    console.log(config);
+    createPost(config);
+    history.push('/');
   };
 
   return (
