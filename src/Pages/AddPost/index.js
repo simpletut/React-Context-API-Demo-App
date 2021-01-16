@@ -7,6 +7,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { v4 as uuidv4 } from 'uuid';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,7 +51,12 @@ const AddPost = props => {
   const handleSubmit = evt => {
     evt.preventDefault();
 
-    console.log(formValues);
+    const config = {
+      ...formValues,
+      id: uuidv4()
+    };
+
+    console.log(config);
   };
 
   return (
